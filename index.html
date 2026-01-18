@@ -127,6 +127,25 @@
         #tab3:checked ~ .tabs-nav label[for="tab3"] span {
             @apply bg-primary;
         }
+        
+        /* Mobile Menu Styles */
+        #mobile-menu.active {
+            display: block !important;
+            animation: menuSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes menuSlideIn {
+            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .joined-buttons-container {
+            @apply flex items-center border border-slate-200 dark:border-slate-700 rounded-full overflow-hidden h-9;
+        }
+        .joined-btn-left {
+            @apply px-4 h-full flex items-center justify-center bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[10px] font-bold uppercase tracking-tight border-r border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition-colors;
+        }
+        .joined-btn-right {
+            @apply px-4 h-full flex items-center justify-center bg-primary text-white text-[10px] font-bold uppercase tracking-tight hover:bg-blue-700 transition-colors;
+        }
     </style>
 </head>
 
@@ -142,6 +161,8 @@
                         class="text-xl md:text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">OPTIMO<span
                             class="text-primary">.</span></span>
                 </div>
+
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
                         href="#">Home</a>
@@ -154,12 +175,43 @@
                     <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
                         href="#reviews">Reviews</a>
                 </div>
-                <div>
-                    <a class="hidden md:inline-flex items-center justify-center px-5 py-1.5 border border-transparent text-sm font-medium rounded-full text-white bg-primary hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30"
+
+                <!-- Desktop CTA -->
+                <div class="hidden md:block">
+                    <a class="inline-flex items-center justify-center px-5 py-1.5 border border-transparent text-sm font-medium rounded-full text-white bg-primary hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30"
                         href="#book">
                         Book Online <span class="material-icons text-sm ml-1">arrow_forward</span>
                     </a>
                 </div>
+
+                <!-- Mobile Controls -->
+                <div class="flex md:hidden items-center gap-2">
+                    <div class="joined-buttons-container">
+                        <a href="#book" class="joined-btn-left">Book</a>
+                        <a href="tel:+1234567890" class="joined-btn-right">Call Us</a>
+                    </div>
+                    <button id="mobile-menu-btn" class="p-1 text-slate-900 dark:text-white focus:outline-none">
+                        <span class="material-icons text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu"
+            class="hidden absolute left-4 right-4 mt-2 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 p-8 pt-10 pointer-events-auto">
+            <div class="flex flex-col gap-8">
+                <nav class="flex flex-col gap-6">
+                    <a href="#services" class="text-xl font-bold text-slate-900 dark:text-white">Car Detailing</a>
+                    <a href="#services" class="text-xl font-bold text-slate-900 dark:text-white">Ceramic Coating</a>
+                    <a href="#services" class="text-xl font-bold text-slate-900 dark:text-white">Pricing</a>
+                    <a href="#gallery" class="text-xl font-bold text-slate-900 dark:text-white">Gift Cards</a>
+                    <a href="#reviews" class="text-xl font-bold text-slate-900 dark:text-white">Blog</a>
+                </nav>
+                <a href="#book"
+                    class="w-full py-4 bg-primary text-white font-bold rounded-2xl flex items-center justify-center text-lg shadow-xl shadow-blue-500/20 hover:bg-blue-700 transition-all">
+                    Schedule Online
+                </a>
             </div>
         </div>
     </nav>
@@ -1561,6 +1613,36 @@
         </div>
     </footer>
     <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = menuBtn.querySelector('.material-icons');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        menuBtn.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.toggle('active');
+            menuIcon.textContent = isActive ? 'close' : 'menu';
+
+            // Toggle body scroll if menu is open
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        });
+
+        // Close menu when a link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.textContent = 'menu';
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                menuIcon.textContent = 'menu';
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 
 </body>
