@@ -34,7 +34,6 @@
                         '2xl': '1.5rem',
                     },
                     animation: {
-                        'hero-zoom': 'heroZoom 20s ease-out forwards',
                         'fade-in-up-heavy': 'fadeInUpHeavy 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
                         'fade-in-left-staggered': 'fadeInLeftStaggered 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
 
@@ -44,10 +43,6 @@
                         'scroll-right': 'scrollRight 40s linear infinite',
                     },
                     keyframes: {
-                        heroZoom: {
-                            '0%': { transform: 'scale(1)' },
-                            '100%': { transform: 'scale(1.1)' },
-                        },
                         fadeInUpHeavy: {
                             '0%': { opacity: '0', transform: 'translateY(60px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -171,7 +166,7 @@
     <section class="relative h-screen flex items-center overflow-hidden">
         <div class="absolute inset-0 z-0 overflow-hidden">
             <img alt="Luxury car being detailed"
-                class="w-full h-full object-cover object-center opacity-90 dark:opacity-40 animate-hero-zoom"
+                class="w-full h-full object-cover object-center opacity-90 dark:opacity-40"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAjHfbmJAQnDPHhzGZyfCK4h4qaGNfoDDBg8C7tqYteRB5hlP5vuJ3fZ8ien6FMKUtHfmaAGEe9Llc_Ua2P-DjykFrr4MB-qlaYpdcbMWp4pFcO89Y0Q54viWRol2r7Us2aBGF51dJ4renyMb7QDDUu5fnJtYuT9-GjxnYfV48fvjMe3avDl_8wH3EgY8vUByF2lrmHGhi_Cy9_wn0VCmLNW16vZ6MWt8l4pZBCDLiTamef0BCBHl421UHiGTI_AFXPyu1oDrl" />
             <div
                 class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent dark:from-background-dark dark:via-background-dark/80 dark:to-transparent">
@@ -181,11 +176,11 @@
             <div class="grid lg:grid-cols-1 items-center">
                 <div class="text-white">
                     <h1
-                        class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.2] py-2 mb-1 flex flex-col whitespace-nowrap">
+                        class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-[1.2] py-2 mb-2 flex flex-col items-start">
                         <span class="block pb-1">Re-Shine Your Car With Our</span>
                         <span class="hero-shimmer-text block pb-1">Professional Detailing</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-slate-200 mb-2 max-w-lg leading-relaxed">
+                    <p class="text-lg md:text-xl text-slate-200 mb-6 max-w-full md:max-w-lg leading-relaxed">
                         Trusted by 500+ car owners in [City]. Get a fast quote in under 60 seconds.
                     </p>
                     <div class="flex flex-col gap-4">
@@ -201,7 +196,7 @@
                             <a class="inline-flex items-center px-8 py-3 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-all"
                                 href="tel:+1234567890">
                                 <span class="material-icons text-xl mr-2">call</span>
-                                +1 234 567 890
+                                +1 334 567 890
                             </a>
                         </div>
                         <div class="flex items-center gap-3 mt-2">
@@ -312,28 +307,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row items-center justify-center w-full mb-6 text-center lg:pl-36">
-                        <div class="inline-flex items-center justify-center">
+                    <div class="flex flex-col md:flex-row items-center justify-center w-full mb-8 text-center lg:pl-0">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6">
                             <h3
-                                class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-none whitespace-nowrap">
+                                class="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight text-center whitespace-normal md:whitespace-nowrap">
                                 Car detailing expert in
                             </h3>
-                            <div class="cycling-container flex-none w-[16rem] md:w-[24rem] lg:w-[32rem] ml-6 md:ml-10">
-                                <div class="animate-text-cycle-improved flex flex-col items-center md:items-start">
+                            <div class="cycling-container flex-none w-full md:w-[24rem] lg:w-[32rem]">
+                                <div class="animate-text-cycle-improved flex flex-col items-center">
                                     <span
-                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Ceramic
+                                        class="h-10 md:h-14 flex items-center text-2xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Ceramic
                                         Coating</span>
                                     <span
-                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Paint
+                                        class="h-10 md:h-14 flex items-center text-2xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Paint
                                         Correction</span>
                                     <span
-                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Interior
+                                        class="h-10 md:h-14 flex items-center text-2xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Interior
                                         Detailing</span>
                                     <span
-                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Full
+                                        class="h-10 md:h-14 flex items-center text-2xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Full
                                         Restoration</span>
                                     <span
-                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Ceramic
+                                        class="h-10 md:h-14 flex items-center text-2xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Ceramic
                                         Coating</span>
                                 </div>
                             </div>
