@@ -1,0 +1,1573 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Optimo Auto Detailing - Premium Car Care</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563EB",
+                        "background-light": "#F8FAFC",
+                        "background-dark": "#0F172A",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E293B",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                    },
+                    animation: {
+                        'hero-zoom': 'heroZoom 20s ease-out forwards',
+                        'fade-in-up-heavy': 'fadeInUpHeavy 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'fade-in-left-staggered': 'fadeInLeftStaggered 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+
+                        'text-cycle-improved': 'textCycleImproved 5s cubic-bezier(0.76, 0, 0.24, 1) infinite',
+                        'shimmer-text': 'shimmerText 12s linear infinite',
+                        'scroll-left': 'scrollLeft 40s linear infinite',
+                        'scroll-right': 'scrollRight 40s linear infinite',
+                    },
+                    keyframes: {
+                        heroZoom: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.1)' },
+                        },
+                        fadeInUpHeavy: {
+                            '0%': { opacity: '0', transform: 'translateY(60px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeInLeftStaggered: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+
+                        textCycleImproved: {
+                            '0%, 20%': { transform: 'translateY(0%)' },
+                            '25%, 45%': { transform: 'translateY(-20%)' },
+                            '50%, 70%': { transform: 'translateY(-40%)' },
+                            '75%, 95%': { transform: 'translateY(-60%)' },
+                            '100%': { transform: 'translateY(-80%)' },
+                        },
+                        shimmerText: {
+                            '0%': { backgroundPosition: '-200% center' },
+                            '100%': { backgroundPosition: '200% center' },
+                        },
+                        scrollLeft: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        scrollRight: {
+                            '0%': { transform: 'translateX(-50%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        .font-serif-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563EB] to-[#60A5FA];
+        }
+        .hero-shimmer-text {
+            background: linear-gradient(90deg, #3B82F6, #93C5FD, #3B82F6);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            @apply animate-shimmer-text;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .cycling-container {
+            height: 2.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .cycling-container {
+                height: 3.5rem;
+            }
+        }
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        #tab1:checked ~ .tabs-container #content1,
+        #tab2:checked ~ .tabs-container #content2,
+        #tab3:checked ~ .tabs-container #content3 {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #tab1:checked ~ .tabs-nav label[for="tab1"],
+        #tab2:checked ~ .tabs-nav label[for="tab2"],
+        #tab3:checked ~ .tabs-nav label[for="tab3"] {
+            @apply text-primary border-primary;
+        }
+        #tab1:checked ~ .tabs-nav label[for="tab1"] span,
+        #tab2:checked ~ .tabs-nav label[for="tab2"] span,
+        #tab3:checked ~ .tabs-nav label[for="tab3"] span {
+            @apply bg-primary;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased font-sans scroll-smooth">
+
+    <nav class="fixed w-full z-40 top-4 px-4 sm:px-6 transition-all duration-300 pointer-events-none">
+        <div
+            class="max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-xl shadow-2xl pointer-events-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-12 md:h-14">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span
+                        class="text-xl md:text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">OPTIMO<span
+                            class="text-primary">.</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
+                        href="#">Home</a>
+                    <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
+                        href="#services">Services</a>
+                    <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
+                        href="#gallery">Gallery</a>
+                    <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
+                        href="#process">Process</a>
+                    <a class="text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
+                        href="#reviews">Reviews</a>
+                </div>
+                <div>
+                    <a class="hidden md:inline-flex items-center justify-center px-5 py-1.5 border border-transparent text-sm font-medium rounded-full text-white bg-primary hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30"
+                        href="#book">
+                        Book Online <span class="material-icons text-sm ml-1">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img alt="Luxury car being detailed"
+                class="w-full h-full object-cover object-center opacity-90 dark:opacity-40 animate-hero-zoom"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAjHfbmJAQnDPHhzGZyfCK4h4qaGNfoDDBg8C7tqYteRB5hlP5vuJ3fZ8ien6FMKUtHfmaAGEe9Llc_Ua2P-DjykFrr4MB-qlaYpdcbMWp4pFcO89Y0Q54viWRol2r7Us2aBGF51dJ4renyMb7QDDUu5fnJtYuT9-GjxnYfV48fvjMe3avDl_8wH3EgY8vUByF2lrmHGhi_Cy9_wn0VCmLNW16vZ6MWt8l4pZBCDLiTamef0BCBHl421UHiGTI_AFXPyu1oDrl" />
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent dark:from-background-dark dark:via-background-dark/80 dark:to-transparent">
+            </div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32">
+            <div class="grid lg:grid-cols-1 items-center">
+                <div class="text-white">
+                    <h1
+                        class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.2] py-2 mb-1 flex flex-col whitespace-nowrap">
+                        <span class="block pb-1">Re-Shine Your Car With Our</span>
+                        <span class="hero-shimmer-text block pb-1">Professional Detailing</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-200 mb-2 max-w-lg leading-relaxed">
+                        Trusted by 500+ car owners in [City]. Get a fast quote in under 60 seconds.
+                    </p>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-wrap gap-4">
+                            <a class="inline-flex items-center px-8 py-3 rounded-full bg-white text-slate-900 font-semibold hover:bg-slate-100 transition-all shadow-lg group"
+                                href="#book">
+                                Book Online
+                                <span
+                                    class="ml-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-icons text-sm">north_east</span>
+                                </span>
+                            </a>
+                            <a class="inline-flex items-center px-8 py-3 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-all"
+                                href="tel:+1234567890">
+                                <span class="material-icons text-xl mr-2">call</span>
+                                +1 234 567 890
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-3 mt-2">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                    <path
+                                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                        fill="#4285F4"></path>
+                                    <path
+                                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                        fill="#34A853"></path>
+                                    <path
+                                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                                        fill="#FBBC05"></path>
+                                    <path
+                                        d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                        fill="#EA4335"></path>
+                                </svg>
+                                <div class="flex text-yellow-400">
+                                    <span class="material-icons text-lg">star</span>
+                                    <span class="material-icons text-lg">star</span>
+                                    <span class="material-icons text-lg">star</span>
+                                    <span class="material-icons text-lg">star</span>
+                                    <span class="material-icons text-lg">star</span>
+                                </div>
+                            </div>
+                            <span class="text-slate-200 text-sm font-medium">Rated 5.0/5 by our customers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                        Since 2018, we've been the choice for <span
+                            class="font-serif-italic font-normal">impeccable</span> detailing, obsessed with every inch.
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-8 text-lg leading-relaxed">
+                        At Optimo Detailing, we help car enthusiasts and daily drivers alike unlock the true beauty of
+                        their vehicles. With a team of certified professionals, we combine cutting-edge technology with
+                        traditional craftsmanship.
+                    </p>
+                </div>
+                <div class="relative lg:mt-24">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img alt="Detailer polishing car"
+                            class="rounded-2xl w-full h-64 object-cover shadow-lg translate-y-8 hover:scale-[1.02] transition-transform duration-500"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKYFVZ5CmQV00RVSZvTo-GswkGee63rMjMT61n2sGYdD8CAfrr9cyWjTv3SHJgnqjktaaLdSUWu_ILz-b4Ycy1GgU-hhXHpgXE8XuBCOu3KXsNR66yRkWUbozysZfCvx9t2R_i0832rZBcytQEgJyY8EEScBCEyYAjAoblLIQGj_ixdV1EXOyrJ3I1cNW4KChO9HmDYo3nHhYmO3tpPv_QVkukgiIQguwltGJB0asEz5cA8lL1GtQJmuFV8nJ6qsy6VJqfZVrN" />
+                        <img alt="Clean car interior"
+                            class="rounded-2xl w-full h-64 object-cover shadow-lg hover:scale-[1.02] transition-transform duration-500"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKHyVg9jU0PKHWmhNpiVJt_Bm13mRB2v5XymDY4QP0Q7fY3Hs67sfguFWd4RYlYHuPU6tygBsQLZXFnxt8WEYVoAKJUa43RPjGj3XHYUcNhAhFts-9YZDqs-VTGVyXAsc_MuAGsPikIua9dpxRsz33qokpZGvDbDRqv6RlylEsE692GTI_6b3PXp9h8pVq93MQx3rFoATcdODdPWTv6zU-5CvT7fNJvU5_ocpl_I8fmoVtkbCYonin77hJOhT9MUA4A_B_yZJ2" />
+                    </div>
+                    <div
+                        class="absolute -bottom-10 -left-10 bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 max-w-xs hidden md:block hover:shadow-2xl transition-shadow z-30">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                                <span class="material-icons text-primary text-sm">auto_awesome</span> Paint Correction
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                                <span class="material-icons text-primary text-sm">shield</span> Ceramic Coating
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                                <span class="material-icons text-primary text-sm">airline_seat_recline_extra</span>
+                                Interior Deep Clean
+                            </li>
+                        </ul>
+                        <div class="mt-6">
+                            <a class="w-full flex justify-between items-center px-4 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors"
+                                href="#services">
+                                View Services <span class="material-icons text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex justify-center mt-32 mb-12">
+                <div
+                    class="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 w-full max-w-[1200px] hover:border-primary/30 transition-all group z-20 flex flex-col items-center text-center">
+                    <div class="flex items-center justify-center gap-2 mb-8">
+                        <div
+                            class="flex items-center gap-2 bg-slate-50 dark:bg-slate-900/50 px-5 py-2.5 rounded-full border border-slate-100 dark:border-slate-800">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                <path
+                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                    fill="#4285F4"></path>
+                                <path
+                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                    fill="#33A853"></path>
+                                <path
+                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                                    fill="#FBBC05"></path>
+                                <path
+                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                    fill="#EA4335"></path>
+                            </svg>
+                            <span class="text-sm font-bold text-slate-600 dark:text-slate-400">Rated 4.9 stars on
+                                Google</span>
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-center w-full mb-6 text-center lg:pl-36">
+                        <div class="inline-flex items-center justify-center">
+                            <h3
+                                class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-none whitespace-nowrap">
+                                Car detailing expert in
+                            </h3>
+                            <div class="cycling-container flex-none w-[16rem] md:w-[24rem] lg:w-[32rem] ml-6 md:ml-10">
+                                <div class="animate-text-cycle-improved flex flex-col items-center md:items-start">
+                                    <span
+                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Ceramic
+                                        Coating</span>
+                                    <span
+                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Paint
+                                        Correction</span>
+                                    <span
+                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Interior
+                                        Detailing</span>
+                                    <span
+                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Full
+                                        Restoration</span>
+                                    <span
+                                        class="h-10 md:h-14 flex items-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight whitespace-nowrap">Ceramic
+                                        Coating</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 font-semibold text-2xl md:text-3xl mb-10">Get your car
+                        detailed now</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+                        <a class="inline-flex items-center px-10 py-4 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all shadow-md"
+                            href="tel:+1234567890">
+                            <span class="material-icons mr-2 text-xl">call</span>
+                            +1 234 567 890
+                        </a>
+                        <span
+                            class="font-bold text-3xl tracking-widest uppercase text-slate-900 dark:text-white">OR</span>
+                        <a class="inline-flex items-center px-10 py-4 rounded-full bg-primary text-white font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
+                            href="#book">
+                            Get a Free Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-white dark:bg-surface-dark border-y border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+                With a <span class="hero-shimmer-text">99% client satisfaction</span>,<br />
+                our results speak for <span class="font-serif-italic font-normal">Themselves</span>
+            </h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="p-6 text-center">
+                <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">500+</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">Cars detailed to perfection over the last 5
+                    years.</p>
+            </div>
+            <div class="p-6 text-center">
+                <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">99%</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">Client satisfaction rate based on post-service
+                    surveys.</p>
+            </div>
+            <div class="p-6 text-center">
+                <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">10+</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">Certified detailing specialists on our expert
+                    team.</p>
+            </div>
+            <div class="p-6 text-center">
+                <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">5yr</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">Warranty on our premium ceramic coating
+                    packages.</p>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden" id="reviews">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
+                Proven What Our <br />
+                Clients <span class="font-serif-italic font-normal">Say</span>
+            </h2>
+        </div>
+        <div class="relative w-full overflow-hidden space-y-8">
+            <div class="flex overflow-hidden group">
+                <div class="flex animate-scroll-left hover:[animation-play-state:paused] whitespace-nowrap">
+                    <div class="flex gap-8 px-4">
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The attention to detail was incredible. They removed scratches I thought were permanent.
+                                My car looks better than the day I bought it.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ej88qcfzsLpeJIWYU7ejADyIev3YHwfjX_hxEy3Grhe068PTE3ZlUDnnhHagt58HOe94oAfyDWnWKtRaNAQgLUNsWL4ZcEjMhDOrFLCd3Uru-mUjA9AR4e_g8LN74-Orzf86sVjXcKsdPnrDHvD1-1xO2KQe4cwLaYxzOAAXo9ByoFUsM0bLyUTHl6Y4A2xPqZntdxIuLhtW0zwcvuDbWd7aQ1jVUCkiT1branSLmfgUuiqlW_o8MRF1yo37IeJnOfOPWZHh" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Jane Cooper</p>
+                                    <p class="text-xs text-slate-500">BMW M3 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Their strategic insight on which coating to use was helpful. I appreciate the
+                                transparency and regular updates during the process.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSukjCiJGbWeTHcsT7sg4bwB-jfr03UN3TXShKtB-tHX4LNbYVy29Xg9hjbf7PbI09vh04x7ve0pZ1Tpe5GSDkY1Fx8ZvqzjMH408rdh3DNFp1VqZVbwcvRRp8_8sm1CmaQl72D8uXhBg4VavBak5sGE3Qfn2tOen6YL4kXYfIXZB-lQy2O8Ykkd-BAShDhPSaHYnu4YK-mSnGdIeIctwRD_2PYpdn3K5vPm8kcUPZ5Jh5JD3DQr9xGw47OhnHA1zZeAPVybA" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Robert Fox</p>
+                                    <p class="text-xs text-slate-500">Tesla Model S Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Professional, timely, and the results are stunning. The interior feels brand new. Highly
+                                recommend Optimo for anyone who loves their car.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzTsWhT_jkFITa6smHlD1QYcnEJUCbkB5cXByJocYkpbmCidTG_HW4xZt0I1FNsarmmM5u2F4wgNSIiFL_8znv7wwhNnQj0-KVZTURSdp37WRztfUx7lHGIouaFtum1Lms9q7YR6BNfR6bf62ItnZdIW3vULww37-gAQ96P9cr59UNc9PFz5lKz5CmAU4O4W3ohp-V-07ddc9IuNU1bigOJSoZM7siEMwxU6Xj8OTwaV-WCRixfdSv3xsXgW84RvsRIn2Osyof" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Esther Howard</p>
+                                    <p class="text-xs text-slate-500">Audi Q7 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                My vintage Porsche was treated with the absolute highest level of care. The paint depth
+                                they achieved with the correction process is just otherworldly.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA6EiG4vbo0D0jz3dTGh6hhk9FONlPU6iYadvV-4K0ZhNnXmhPjwC2Eg1mGupIM3ctCzCJxxqJiyWayE34Goyk_1z7tc6IM9sub2AoUwXPLfo_6dqQBHKEJe0blx1VL6-Jh76QeyR1MMpQqc88U3pcu6X5dm0-Qp2svSKx7dVi7t8FzHInqiuCbmZmn6_1EaplFWWVCR_pgYhK3H4xVdPJuVnTsBBQi5tZZPUUeSy6HqwOqJmYmw5isZAgIhUFgOhePL8lCAr8" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Marcus Sterling</p>
+                                    <p class="text-xs text-slate-500">Porsche 911 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The ceramic coating has made maintenance so much easier. Rain literally bounces off the
+                                car. It’s been six months and it still looks freshly detailed.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO8q6Fp1cBeAOtx4DM1CAbRDNn63Z2rxsqjNzV9y1Y1eKQgMJuJiyuQe0HIabWHuyGO-mXpaTLMB_O6OdpSRvVhn9S8FDZDx5iAdZFCN4jzt3BsX1MT1OyWAmy3SmE6Zy7qHnhZ9rR9IB6PeS6byekFExqLcSBaPttbzj_2ONLQI_yQXOhIWMK_yoanCT0j7ZCA7zdAmSBiR1NRuCy-BPVSM_KR4BPkNT1nw-U6lYPSOaFKmoKF5l5TYLhTGOHLtzp4jH5G6_7" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+                                    <p class="text-xs text-slate-500">Range Rover Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Best customer service in the industry. They walked me through every step of the paint
+                                correction. My Black sapphire metallic paint has never popped like this.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfVHy7R91KUViVvwEe6GfpJ5PXWlEW2jDtrxnG1iHfUF2voxbeiPXimqa30HyDsq8K0SrJcIaKh6Q3LEIoFhqXWHTCmZ2rWlDr73maDUbyhmQy3HciaJRL-g1hmo1hVZD3_qVO9ONoJbZzIGjYrrxWrG-Hq3MDk_NIIrTEnk-UQz540Ag18q3xq7hcVtD5SGWfxdLuTg40AmuNKUbjiaQMHDDQ1GgLJb67zXNLmgquPTCp-ulosTR6jJrtLYJEnxWXMpTXvDbr" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">David Miller</p>
+                                    <p class="text-xs text-slate-500">BMW M5 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 px-4">
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The attention to detail was incredible. They removed scratches I thought were permanent.
+                                My car looks better than the day I bought it.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ej88qcfzsLpeJIWYU7ejADyIev3YHwfjX_hxEy3Grhe068PTE3ZlUDnnhHagt58HOe94oAfyDWnWKtRaNAQgLUNsWL4ZcEjMhDOrFLCd3Uru-mUjA9AR4e_g8LN74-Orzf86sVjXcKsdPnrDHvD1-1xO2KQe4cwLaYxzOAAXo9ByoFUsM0bLyUTHl6Y4A2xPqZntdxIuLhtW0zwcvuDbWd7aQ1jVUCkiT1branSLmfgUuiqlW_o8MRF1yo37IeJnOfOPWZHh" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Jane Cooper</p>
+                                    <p class="text-xs text-slate-500">BMW M3 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Their strategic insight on which coating to use was helpful. I appreciate the
+                                transparency and regular updates during the process.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSukjCiJGbWeTHcsT7sg4bwB-jfr03UN3TXShKtB-tHX4LNbYVy29Xg9hjbf7PbI09vh04x7ve0pZ1Tpe5GSDkY1Fx8ZvqzjMH408rdh3DNFp1VqZVbwcvRRp8_8sm1CmaQl72D8uXhBg4VavBak5sGE3Qfn2tOen6YL4kXYfIXZB-lQy2O8Ykkd-BAShDhPSaHYnu4YK-mSnGdIeIctwRD_2PYpdn3K5vPm8kcUPZ5Jh5JD3DQr9xGw47OhnHA1zZeAPVybA" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Robert Fox</p>
+                                    <p class="text-xs text-slate-500">Tesla Model S Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Professional, timely, and the results are stunning. The interior feels brand new. Highly
+                                recommend Optimo for anyone who loves their car.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzTsWhT_jkFITa6smHlD1QYcnEJUCbkB5cXByJocYkpbmCidTG_HW4xZt0I1FNsarmmM5u2F4wgNSIiFL_8znv7wwhNnQj0-KVZTURSdp37WRztfUx7lHGIouaFtum1Lms9q7YR6BNfR6bf62ItnZdIW3vULww37-gAQ96P9cr59UNc9PFz5lKz5CmAU4O4W3ohp-V-07ddc9IuNU1bigOJSoZM7siEMwxU6Xj8OTwaV-WCRixfdSv3xsXgW84RvsRIn2Osyof" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Esther Howard</p>
+                                    <p class="text-xs text-slate-500">Audi Q7 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                My vintage Porsche was treated with the absolute highest level of care. The paint depth
+                                they achieved with the correction process is just otherworldly.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Xadtu6At_Tgo7rFO7bKCCEH3SVpNDKBPBJwEaxZlXYFf7vnaSRjUI0onTMRp638iA6OW8_LnCcEtoWLvXJM1uJ0yDzBcOb52bRIujo4UgK3zYyBg38ulqfaVQa0jZgxuk4JFyKpPCxQ-ADgxUMk8bmFLAO3PQhQP4n7KvXrvF681qjZOOqkr3QiekdalE1-E66SLq39BQ0XcjIX-yiUNAzJo9PQ-ELLD9M8RTvQtAbt-L9WtX8RCQ3PN29elBWmaz0LZ6zDs" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Marcus Sterling</p>
+                                    <p class="text-xs text-slate-500">Porsche 911 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The ceramic coating has made maintenance so much easier. Rain literally bounces off the
+                                car. It’s been six months and it still looks freshly detailed.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu7hPJlDGAhLwuMKGzFEMKrPCTqMBDGMbLIf8f1X8iucy824p836xh58Ya_iKXBWi_Y-T5Tzkb7UoHy5rgdxvj2fkRcpaJ_DhbqE5pl6n-LCAEX00VOpDIMi6OnlT_p6ahfdauFw85ErhUJHAN370vwj1Vk72W5YgIQSlFQ4js0eyqOmkLOS9bhi9m_CZ73vVgzAbxLw9dMA-tLsFTU9S5WNxFomH9MYBMDfUsOYvj1Kx2t_ORkDLV7EZUHNUIQ8cIJqfhBsOT" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+                                    <p class="text-xs text-slate-500">Range Rover Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Best customer service in the industry. They walked me through every step of the paint
+                                correction. My Black sapphire metallic paint has never popped like this.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuARoYdkYPa-YTBlduXYLVBUYWe6YsV0JeIrTrBhQEITnvUUp76md8xdLU7FZS13e4oAbFpfyCEwyVTxev-6f9g0cD69_Us6PJA81V4mQwDfv1CKYPY-86bv33-1CHB29WUBJRbiDnGVfiQKBIBNh_-hDSRNAS8fw5dc4Mp2Y-vTG4HDTYHwrSnjM8Ed2lOJwXLYQsDwu-XU0dHACleKyJqTjwSkQ5OtQHVRfzX-aEQxgiodXcoqM202s9UoIbcMxqjkCj2Le-9Y" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">David Miller</p>
+                                    <p class="text-xs text-slate-500">BMW M5 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex overflow-hidden group">
+                <div class="flex animate-scroll-right hover:[animation-play-state:paused] whitespace-nowrap">
+                    <div class="flex gap-8 px-4">
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The attention to detail was incredible. They removed scratches I thought were permanent.
+                                My car looks better than the day I bought it.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ej88qcfzsLpeJIWYU7ejADyIev3YHwfjX_hxEy3Grhe068PTE3ZlUDnnhHagt58HOe94oAfyDWnWKtRaNAQgLUNsWL4ZcEjMhDOrFLCd3Uru-mUjA9AR4e_g8LN74-Orzf86sVjXcKsdPnrDHvD1-1xO2KQe4cwLaYxzOAAXo9ByoFUsM0bLyUTHl6Y4A2xPqZntdxIuLhtW0zwcvuDbWd7aQ1jVUCkiT1branSLmfgUuiqlW_o8MRF1yo37IeJnOfOPWZHh" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Jane Cooper</p>
+                                    <p class="text-xs text-slate-500">BMW M3 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Their strategic insight on which coating to use was helpful. I appreciate the
+                                transparency and regular updates during the process.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSukjCiJGbWeTHcsT7sg4bwB-jfr03UN3TXShKtB-tHX4LNbYVy29Xg9hjbf7PbI09vh04x7ve0pZ1Tpe5GSDkY1Fx8ZvqzjMH408rdh3DNFp1VqZVbwcvRRp8_8sm1CmaQl72D8uXhBg4VavBak5sGE3Qfn2tOen6YL4kXYfIXZB-lQy2O8Ykkd-BAShDhPSaHYnu4YK-mSnGdIeIctwRD_2PYpdn3K5vPm8kcUPZ5Jh5JD3DQr9xGw47OhnHA1zZeAPVybA" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Robert Fox</p>
+                                    <p class="text-xs text-slate-500">Tesla Model S Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Professional, timely, and the results are stunning. The interior feels brand new. Highly
+                                recommend Optimo for anyone who loves their car.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzTsWhT_jkFITa6smHlD1QYcnEJUCbkB5cXByJocYkpbmCidTG_HW4xZt0I1FNsarmmM5u2F4wgNSIiFL_8znv7wwhNnQj0-KVZTURSdp37WRztfUx7lHGIouaFtum1Lms9q7YR6BNfR6bf62ItnZdIW3vULww37-gAQ96P9cr59UNc9PFz5lKz5CmAU4O4W3ohp-V-07ddc9IuNU1bigOJSoZM7siEMwxU6Xj8OTwaV-WCRixfdSv3xsXgW84RvsRIn2Osyof" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Esther Howard</p>
+                                    <p class="text-xs text-slate-500">Audi Q7 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                My vintage Porsche was treated with the absolute highest level of care. The paint depth
+                                they achieved with the correction process is just otherworldly.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuveO_oPCcwc9jxSgt1HwTyr5Csgsp3v_yAEGI0-S2MT2W1epjHTlAwWhEPJ4al1xsK3m5W8OqzF0ugptsHLPUyqxdp_tA4Nz5Ur183h8Tc_nQQltDWwWPbm6LXClq5bYEJvEAE0gayDUvhUzFqQR8MCwbiZbCsjH1CnZ8x_el7NgztqNx8UaTTxsz_4vyU7RciXZ3SLSaOMp4gppWf0zs_jl7tLzeODH9GNrHfPwcL7gjL45GI8izM7rwkI-XsTXMWlRkE1DK" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Marcus Sterling</p>
+                                    <p class="text-xs text-slate-500">Porsche 911 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The ceramic coating has made maintenance so much easier. Rain literally bounces off the
+                                car. It’s been six months and it still looks freshly detailed.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Hp3SF08oFPlBIEw2uVk5jPkIrSMvM52wMgAgWrRT8lYLRNpG5x2Z-SA-kHfy_uyttZnbeymTYrkzGJOZWfrrNfapp37OZPX5Gj9NNao29QmP6f9OkknGTnZ5okl6_LsaCJMq4rkgSw5s65_YtxfeTvAfmlr0tU_42JetponV7D8c5wPxo8BZ3xM2pYhLtzxCnvzUERs6YQKI54WGijUq36v1ha6yqMDUwyubTAGYCWq9pi0vGr5eLpktGk3ekocMDq3_rwrH" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+                                    <p class="text-xs text-slate-500">Range Rover Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Best customer service in the industry. They walked me through every step of the paint
+                                correction. My Black sapphire metallic paint has never popped like this.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIyJQi554FpixMIVHKXY_WZVy7OQYi-m_9fTaPD5icb5LSwuGgw8fjWBGf57QTi6bQ4SVzJkzZEfeZ8ZcrNvx81R2ungQYUhVSmZFIrip-BbeF9RsNfTh6iOO5yqv9yVau-rFXJsjHKCPxIZebyI3VY8GFhYxfYvTxTNQwppvXQj4MisASnTr982sQPJZx4b8Y-rkREIimxwVmTnJ9-8Hs5duJDI14vJWDn0XFMoMxG_mu-gyDU4Af_alM6ckvzqBOvZ4L4b3h" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">David Miller</p>
+                                    <p class="text-xs text-slate-500">BMW M5 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 px-4">
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The attention to detail was incredible. They removed scratches I thought were permanent.
+                                My car looks better than the day I bought it.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ej88qcfzsLpeJIWYU7ejADyIev3YHwfjX_hxEy3Grhe068PTE3ZlUDnnhHagt58HOe94oAfyDWnWKtRaNAQgLUNsWL4ZcEjMhDOrFLCd3Uru-mUjA9AR4e_g8LN74-Orzf86sVjXcKsdPnrDHvD1-1xO2KQe4cwLaYxzOAAXo9ByoFUsM0bLyUTHl6Y4A2xPqZntdxIuLhtW0zwcvuDbWd7aQ1jVUCkiT1branSLmfgUuiqlW_o8MRF1yo37IeJnOfOPWZHh" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Jane Cooper</p>
+                                    <p class="text-xs text-slate-500">BMW M3 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Their strategic insight on which coating to use was helpful. I appreciate the
+                                transparency and regular updates during the process.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSukjCiJGbWeTHcsT7sg4bwB-jfr03UN3TXShKtB-tHX4LNbYVy29Xg9hjbf7PbI09vh04x7ve0pZ1Tpe5GSDkY1Fx8ZvqzjMH408rdh3DNFp1VqZVbwcvRRp8_8sm1CmaQl72D8uXhBg4VavBak5sGE3Qfn2tOen6YL4kXYfIXZB-lQy2O8Ykkd-BAShDhPSaHYnu4YK-mSnGdIeIctwRD_2PYpdn3K5vPm8kcUPZ5Jh5JD3DQr9xGw47OhnHA1zZeAPVybA" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Robert Fox</p>
+                                    <p class="text-xs text-slate-500">Tesla Model S Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Professional, timely, and the results are stunning. The interior feels brand new. Highly
+                                recommend Optimo for anyone who loves their car.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzTsWhT_jkFITa6smHlD1QYcnEJUCbkB5cXByJocYkpbmCidTG_HW4xZt0I1FNsarmmM5u2F4wgNSIiFL_8znv7wwhNnQj0-KVZTURSdp37WRztfUx7lHGIouaFtum1Lms9q7YR6BNfR6bf62ItnZdIW3vULww37-gAQ96P9cr59UNc9PFz5lKz5CmAU4O4W3ohp-V-07ddc9IuNU1bigOJSoZM7siEMwxU6Xj8OTwaV-WCRixfdSv3xsXgW84RvsRIn2Osyof" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Esther Howard</p>
+                                    <p class="text-xs text-slate-500">Audi Q7 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                My vintage Porsche was treated with the absolute highest level of care. The paint depth
+                                they achieved with the correction process is just otherworldly.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZZbDQa9X4c2J9Xq3tcf1hO0ZehiPVxXfRMpukRnzb9NW6MNctslq9sGMeWF4Sxg8jX5Tsk6MXj1qU4JYQY2s-GIrOZfKi6V6yjzDsVrdpAn0Rg3PNiqGCmjVj7YWByzQzTZH8Eu_8THxvYot3oTnXzAfmZiw0-ilq46WvfqG7ijigOHyOSaF6A0MUjwbVb-O7kGwKqYMi5rFqFUSeJ0Y0xEsLN6-6ud6TjHqEArbKnnAe-AaxXlTBOqI00vHHFMB8LH9su93Z" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Marcus Sterling</p>
+                                    <p class="text-xs text-slate-500">Porsche 911 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                The ceramic coating has made maintenance so much easier. Rain literally bounces off the
+                                car. It’s been six months and it still looks freshly detailed.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHsObqqrdM3qNl6kS2FJ9j8EHskGiuKVf-eSt5fQn8fdUwE_3HOp821nLdxBwVnLc-wutpjusJVlYL7OjdpoSmomWzwbJFD-5YltvjbJGuu6zKmX4nHzy6z7SvZGHDc4NmZ4ZxUgZGvDNSXWRxlGkHi1ojZDLjlEtbHAqQqeSKHcKb56hOcX8iTu9_P9jrqkdOyx1TZiYHmhITVLQggZurphNVxlPoTBhNt938rR5poLBPd-AacR7aOSxQL7ia28Xc81nWTI0U" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+                                    <p class="text-xs text-slate-500">Range Rover Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-[400px] flex-shrink-0 bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <span class="text-4xl text-slate-300 dark:text-slate-600 font-serif mb-4 block">“</span>
+                            <p
+                                class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-normal">
+                                Best customer service in the industry. They walked me through every step of the paint
+                                correction. My Black sapphire metallic paint has never popped like this.
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                                    <img alt="User" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTOT6lY0F9ldcctlevK1Nn9T90QR1aTcrqsnAdq65Hf1HV6S5C_mM62AD_jthf6R5Venwq_u2u8OcqJN5w7Hm_Aa-Jjj4lfFVr86znVJX8ywP67UbPMyhi1CQwt4sv4i8cmRqMZ2KwVuJlRkfkqWSJAPYRNmn-WCXaIGe5pJMpN2Ky4T0qnouf4CEEQw-MivIA8SO2QQM_Vhiq7WsGU4PzsGwL1ZP9YDFw3OppC5qOK9TXS8y8De7HD7YjfcAMo9zveoGQ9vTN" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white">David Miller</p>
+                                    <p class="text-xs text-slate-500">BMW M5 Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+                We Give Your Car <span class="hero-shimmer-text">The Shine</span> It Always <span
+                    class="font-serif-italic font-normal">Deserved</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                Get your vehicle professionally detailed by us and receive long-lasting effects of Ceramic coating,
+                Paint
+                correction, Interior/Exterior detailing, and Overall detailing.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="#appointment"
+                    class="inline-flex items-center px-8 py-3 rounded-full bg-primary text-white font-bold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/25">
+                    Get Appointment
+                </a>
+                <a href="tel:+1234567890"
+                    class="inline-flex items-center px-8 py-3 rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+                    <span class="material-icons mr-2 text-primary">call</span>
+                    +1 234 567 890
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                        Preserving Value Through <br />
+                        <span class="font-serif-italic font-normal text-5xl">Strategic Excellence</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400">Choose from our specialized packages designed to meet
+                        the specific needs of your vehicle's condition.</p>
+                </div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div class="space-y-4">
+                    <div class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-lg md:text-xl font-mono font-bold text-primary">[01]</span>
+                            <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Paint Correction
+                            </h3>
+                        </div>
+                        <div class="pl-16">
+                            <p class="text-slate-600 dark:text-slate-400 mb-6 text-lg">Removal of swirl marks,
+                                scratches, and oxidation to restore mirror-like reflection.</p>
+                            <ul class="space-y-4 text-slate-500 dark:text-slate-400 mb-4">
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">check_circle</span> <span
+                                        class="text-base">Multi-stage machine polishing</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">check_circle</span> <span
+                                        class="text-base">Professional scratch &amp; swirl removal</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">check_circle</span> <span
+                                        class="text-base">Paint depth measurement &amp; analysis</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-lg md:text-xl font-mono font-bold text-primary">[02]</span>
+                            <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Ceramic Coating
+                            </h3>
+                        </div>
+                        <div class="pl-16">
+                            <p class="text-slate-600 dark:text-slate-400 mb-6 text-lg">Long-term protection against UV
+                                rays, chemicals, and environmental contaminants.</p>
+                            <ul class="space-y-4 text-slate-500 dark:text-slate-400 mb-4">
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">shield</span> <span class="text-base">9H
+                                        hardness glass coating application</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">water_drop</span> <span
+                                        class="text-base">Hydrophobic self-cleaning effect</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">verified_user</span> <span
+                                        class="text-base">5-year premium durability warranty</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-lg md:text-xl font-mono font-bold text-primary">[03]</span>
+                            <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Interior
+                                Restoration</h3>
+                        </div>
+                        <div class="pl-16">
+                            <p class="text-slate-600 dark:text-slate-400 mb-6 text-lg">Deep cleaning of leather,
+                                upholstery, and carpets to remove stains and odors.</p>
+                            <ul class="space-y-4 text-slate-500 dark:text-slate-400 mb-4">
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">sanitizer</span> <span
+                                        class="text-base">Steam sanitation &amp; disinfection</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">auto_fix_normal</span> <span
+                                        class="text-base">Leather conditioning &amp; UV protection</span></li>
+                                <li class="flex items-center gap-3"><span class="material-icons text-primary">air</span>
+                                    <span class="text-base">Advanced odor neutralizer treatment</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-item p-6 -ml-4 rounded-2xl">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-lg md:text-xl font-mono font-bold text-primary">[04]</span>
+                            <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Headlight
+                                Restoration</h3>
+                        </div>
+                        <div class="pl-16">
+                            <p class="text-slate-600 dark:text-slate-400 mb-6 text-lg">Restoring clarity to foggy
+                                headlights for better visibility and aesthetics.</p>
+                            <ul class="space-y-4 text-slate-500 dark:text-slate-400 mb-8">
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">visibility</span> <span
+                                        class="text-base">Multi-step precision sanding process</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">light_mode</span> <span class="text-base">UV
+                                        protective professional clear coat</span></li>
+                                <li class="flex items-center gap-3"><span
+                                        class="material-icons text-primary">safety_check</span> <span
+                                        class="text-base">Significantly improved night-time safety</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pt-8 pl-16">
+                        <a class="inline-flex items-center justify-center px-10 py-4 bg-primary text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 group"
+                            href="#book">
+                            Get Your Car Detailed
+                            <span
+                                class="material-icons text-lg ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative h-full min-h-[500px] lg:sticky lg:top-32">
+                    <img alt="Detailer working on car paint"
+                        class="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-2xl transition-transform hover:scale-[1.01] duration-500"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXbPonie0I_iYqSd113LKCu3GXAlJBGj7o-TVM5aI1sIbMI6Eudu1A7oAYBjWZq1DfsgVkd98qsA3ZOd5VzqN6aFratIKKQYCYLYVUOCb5CC8rWtdZT48D-PFS6BPjKi9f-SWNYvgJT8333KDSd0AW98lDF2gnbwPPx-kgtz2JwOv13UVxgEy7KcqATxkohj5MEw1eFSlfS8DukloG21yALYZbxGa9qzW6IFAiupuUFBjJeJiqAGCnLbnpRehrZ-XqaHPrhEX5" />
+                    <div
+                        class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-slate-900/90 backdrop-blur p-4 rounded-xl border border-white/20 dark:border-slate-700/50 hover:bg-white dark:hover:bg-slate-900 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0 animate-pulse">
+                                <span class="material-symbols-outlined text-sm">auto_fix_high</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white">Expert Craftsmanship</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Every vehicle is treated with the
+                                    utmost care.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-surface-dark border-y border-slate-100 dark:border-slate-800" id="gallery">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-primary font-bold tracking-wider text-sm uppercase mb-2 block">Our
+                        Portfolio</span>
+                    <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
+                        Transformation <span class="font-serif-italic font-normal">Gallery</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="mt-20 text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 hero-shimmer-text">Want Results Like These?</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg mb-10">
+                    Get a fast quote in under 24 hours or visit us directly.
+                    <a class="text-primary hover:underline inline-flex items-center ml-1" href="#location">View Location
+                        <span class="material-icons text-sm ml-0.5">north_east</span></a>
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+                    <a class="inline-flex items-center px-10 py-4 rounded-full bg-primary text-white font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20"
+                        href="#book">
+                        Check Availability
+                    </a>
+                    <span class="font-bold text-2xl tracking-widest uppercase text-slate-900 dark:text-white">OR</span>
+                    <a class="inline-flex items-center px-10 py-4 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all shadow-md"
+                        href="tel:+1234567890">
+                        <span class="material-icons mr-2 text-xl">call</span>
+                        +1 234 567 890
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <img alt="Porsche 911 Detail"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD80O9jaUaxECLC-7JqCb_MsYFMyHsSJqcY-0jI-Ppuxt7993GEaFBmzO_t6cLuQPGESj1E8uAr4w0PjEOpv1Y7mkEeWVx73bfFklge7XtYill0ubZcmXifNeHQem51D9H_sJGA4TONRjdGixyLdwDA38EU6Q9aeTIYEILSHCkVxWO_bLlcS-CqxH3Qy0RYMwZEmDzCgfgcdKVPt7XJ0Fu2wBmNyGvijez41nJmLvQ4Ql_Z32tn66Vro5wqWh564JLOLVv6VF4b" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-1">Porsche 911</h3>
+                            <p class="text-slate-300 text-sm">Full Paint Correction</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer lg:col-span-2">
+                    <img alt="Luxury Interior Detail"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXbPonie0I_iYqSd113LKCu3GXAlJBGj7o-TVM5aI1sIbMI6Eudu1A7oAYBjWZq1DfsgVkd98qsA3ZOd5VzqN6aFratIKKQYCYLYVUOCb5CC8rWtdZT48D-PFS6BPjKi9f-SWNYvgJT8333KDSd0AW98lDF2gnbwPPx-kgtz2JwOv13UVxgEy7KcqATxkohj5MEw1eFSlfS8DukloG21yALYZbxGa9qzW6IFAiupuUFBjJeJiqAGCnLbnpRehrZ-XqaHPrhEX5" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-1">Mercedes S-Class</h3>
+                            <p class="text-slate-300 text-sm">Interior Deep Clean &amp; Leather Protection</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <img alt="SUV Ceramic Coating"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBheQl9fmh3zwvC38OjQ0zFGq56mkFSH6QOHgQ_931gKa415RrSch49gDH7z1Hfywu1SX8JUeVQyGFonItnEYzXBDxoTZ_V6xZ6CgSEM6nJZN0Pts9tBvxsIPU2WlmMphfC0Nej3njdt02UpLX_wBL_32oEyYGtqIqwS-MXBfsGm4lRd2sL6M56Wdhh4NHL3-VHU_yQ-dmqOEy-qHd129jwSaRwsg11PtbqKvNclpVuxC9kZzd1CVMilBtCJngcqLroBN_wT_zR" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-1">Range Rover</h3>
+                            <p class="text-slate-300 text-sm">Ceramic Pro Coating</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <img alt="Sedan Polish"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfYRSAvo90U4B9wTXstZFXZTyKkX_KpYNYj-ODlX7U03rV8Z3aDFILzYqa9UZPxiPs_HSeqCABLGe_rLm_HOs9F-hNurSzJuqRkYvW048R3G--izHDXMIuWoKvEjP2ts-fJwyjgZ9Mr3WmrjK5_DIrhDeKLR4PM5N7cIWewfIyRyx64OL5P8oAPiYfYL5avRbYq0Ezu3EnPNZe5XAQ_cf_U-S1AwE69IrpLYcIKuQ5LJlIEE5jfs-UaKOjr0ehEIwyvPDiHT0_" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-1">BMW 5 Series</h3>
+                            <p class="text-slate-300 text-sm">Stage 1 Polish</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <img alt="Engine Bay Detail"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWMaOTZEa74L7mSWpDEpSs2D3WTzeLYCeqZ5NJ6M_AtGN-K3GISzjCsoAPToBTH5t1C5I2N5M_n9Vv9S11b3X6j_4Ccf_fK9CGA2DDjx-lL-VKp2dznDihhXkq0NPYHRh-gtOB5LIj7XyjDZDbttJ-tZYWJG5v7s-qs_zm6ir3aapLCHWVexeRWMCm6FRGH5wOWAfK4GH_p9mWeRnfk2KToPE_aB3uE4EphjW-_Lw6AfON-B8xmgtOmJuJp33M3VJv6Cj3JjkV" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-1">Engine Bay</h3>
+                            <p class="text-slate-300 text-sm">Steam Clean &amp; Dress</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark" id="our-promise">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <img alt="Detailed engine bay"
+                        class="rounded-2xl shadow-2xl w-full object-cover h-[600px] hover:scale-[1.01] transition-transform duration-500"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWMaOTZEa74L7mSWpDEpSs2D3WTzeLYCeqZ5NJ6M_AtGN-K3GISzjCsoAPToBTH5t1C5I2N5M_n9Vv9S11b3X6j_4Ccf_fK9CGA2DDjx-lL-VKp2dznDihhXkq0NPYHRh-gtOB5LIj7XyjDZDbttJ-tZYWJG5v7s-qs_zm6ir3aapLCHWVexeRWMCm6FRGH5wOWAfK4GH_p9mWeRnfk2KToPE_aB3uE4EphjW-_Lw6AfON-B8xmgtOmJuJp33M3VJv6Cj3JjkV" />
+                    <div
+                        class="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl text-white">
+                        <h4 class="font-bold text-lg mb-1">Want to Know What's Possible?</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-3 w-full justify-between">
+                                <p class="text-sm text-slate-200">Check more of our work on our social media</p>
+                                <div class="flex gap-2">
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            class="w-6 h-6 hover:scale-110 transition-transform">
+                                            <path
+                                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                                fill="#1877F2" />
+                                        </svg>
+                                    </a>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            class="w-6 h-6 hover:scale-110 transition-transform">
+                                            <defs>
+                                                <linearGradient id="insta_gradient_2" x1="0%" y1="0%" x2="100%"
+                                                    y2="100%">
+                                                    <stop offset="0%" style="stop-color:#f09433;stop-opacity:1" />
+                                                    <stop offset="25%" style="stop-color:#e6683c;stop-opacity:1" />
+                                                    <stop offset="50%" style="stop-color:#dc2743;stop-opacity:1" />
+                                                    <stop offset="75%" style="stop-color:#cc2366;stop-opacity:1" />
+                                                    <stop offset="100%" style="stop-color:#bc1888;stop-opacity:1" />
+                                                </linearGradient>
+                                            </defs>
+                                            <path fill="url(#insta_gradient_2)"
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+                        The Value Behind Our <span class="font-serif-italic font-normal">Passion</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-10 text-lg leading-relaxed">
+                        At Optimo, detailing goes beyond cleaning—it's about preservation and pride. We build trust by
+                        treating your vehicle as if it were our own, delivering tailored solutions, expert insight, and
+                        measurable results.
+                    </p>
+                    <input checked="" class="hidden" id="tab1" name="value-tabs" type="radio" />
+                    <input class="hidden" id="tab2" name="value-tabs" type="radio" />
+                    <input class="hidden" id="tab3" name="value-tabs" type="radio" />
+                    <div class="tabs-nav flex gap-8 border-b border-slate-200 dark:border-slate-800 pb-4 mb-8">
+                        <label
+                            class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium text-sm transition-colors flex items-center gap-2 cursor-pointer border-b-2 border-transparent -mb-[18px] pb-4"
+                            for="tab1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 transition-colors"></span> Deep
+                            Protection
+                        </label>
+                        <label
+                            class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium text-sm transition-colors flex items-center gap-2 cursor-pointer border-b-2 border-transparent -mb-[18px] pb-4"
+                            for="tab2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 transition-colors"></span> Expertise
+                        </label>
+                        <label
+                            class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium text-sm transition-colors flex items-center gap-2 cursor-pointer border-b-2 border-transparent -mb-[18px] pb-4"
+                            for="tab3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 transition-colors"></span> Long-Lasting
+                            Effect
+                        </label>
+                    </div>
+                    <div class="tabs-container relative h-32">
+                        <div class="tab-content text-sm text-slate-500 dark:text-slate-400 leading-relaxed"
+                            id="content1">
+                            We work as guardians of your investment—immersing ourselves in the latest techniques and
+                            products to ensure we offer the best protection money can buy. We believe great results come
+                            from an uncompromising dedication to quality.
+                        </div>
+                        <div class="tab-content text-sm text-slate-500 dark:text-slate-400 leading-relaxed"
+                            id="content2">
+                            Our certified specialists bring decades of combined experience in automotive surface
+                            science. We don't just wash cars; we understand paint chemistry, material properties, and
+                            the precise mechanical processes required for a flawless finish.
+                        </div>
+                        <div class="tab-content text-sm text-slate-500 dark:text-slate-400 leading-relaxed"
+                            id="content3">
+                            By utilizing professional-grade ceramic coatings and advanced paint sealants, we ensure that
+                            the showroom glow lasts for years, not weeks. Our solutions create a durable barrier against
+                            environmental elements, making future maintenance effortless.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-surface-dark border-y border-slate-100 dark:border-slate-800" id="process">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-16">
+                Get Your Vehicle Detailed <br />
+                <span class="font-serif-italic font-normal">In 3-Steps</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px]">
+                    <h3 class="text-3xl md:text-4xl font-bold hero-shimmer-text mb-6">Choose Service</h3>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Select from our wide range of premium detailing packages tailored to meet your specific needs
+                        and budget.
+                    </p>
+                </div>
+                <div
+                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group mt-0 md:mt-12 hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px]">
+                    <h3 class="text-3xl md:text-4xl font-bold hero-shimmer-text mb-6">We Inspect</h3>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Our experts perform a detailed check to ensure every inch of your vehicle is treated with
+                        perfection.
+                    </p>
+                </div>
+                <div
+                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group mt-0 md:mt-24 hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px]">
+                    <h3 class="text-3xl md:text-4xl font-bold hero-shimmer-text mb-6">Drop Off</h3>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Simply drop off your vehicle at our center and let our professionals handle the transformation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-surface-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex justify-between items-end">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
+                How We Detailed Cars <br />
+                To Look <span class="font-serif-italic font-normal">Better</span>
+            </h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="relative group h-[400px] overflow-hidden rounded-2xl">
+                    <img alt="Sports Car"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD80O9jaUaxECLC-7JqCb_MsYFMyHsSJqcY-0jI-Ppuxt7993GEaFBmzO_t6cLuQPGESj1E8uAr4w0PjEOpv1Y7mkEeWVx73bfFklge7XtYill0ubZcmXifNeHQem51D9H_sJGA4TONRjdGixyLdwDA38EU6Q9aeTIYEILSHCkVxWO_bLlcS-CqxH3Qy0RYMwZEmDzCgfgcdKVPt7XJ0Fu2wBmNyGvijez41nJmLvQ4Ql_Z32tn66Vro5wqWh564JLOLVv6VF4b" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div
+                            class="bg-white dark:bg-slate-900 p-4 rounded-xl flex justify-between items-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="font-bold text-sm text-slate-900 dark:text-white">Porsche 911 Correction</span>
+                            <span class="material-icons text-xs text-slate-400">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group h-[400px] overflow-hidden rounded-2xl">
+                    <img alt="Luxury Sedan"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfYRSAvo90U4B9wTXstZFXZTyKkX_KpYNYj-ODlX7U03rV8Z3aDFILzYqa9UZPxiPs_HSeqCABLGe_rLm_HOs9F-hNurSzJuqRkYvW048R3G--izHDXMIuWoKvEjP2ts-fJwyjgZ9Mr3WmrjK5_DIrhDeKLR4PM5N7cIWewfIyRyx64OL5P8oAPiYfYL5avRbYq0Ezu3EnPNZe5XAQ_cf_U-S1AwE69IrpLYcIKuQ5LJlIEE5jfs-UaKOjr0ehEIwyvPDiHT0_" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div
+                            class="bg-white dark:bg-slate-900 p-4 rounded-xl flex justify-between items-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="font-bold text-sm text-slate-900 dark:text-white">Full Interior Detail</span>
+                            <span class="material-icons text-xs text-slate-400">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group h-[400px] overflow-hidden rounded-2xl">
+                    <img alt="SUV"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBheQl9fmh3zwvC38OjQ0zFGq56mkFSH6QOHgQ_931gKa415RrSch49gDH7z1Hfywu1SX8JUeVQyGFonItnEYzXBDxoTZ_V6xZ6CgSEM6nJZN0Pts9tBvxsIPU2WlmMphfC0Nej3njdt02UpLX_wBL_32oEyYGtqIqwS-MXBfsGm4lRd2sL6M56Wdhh4NHL3-VHU_yQ-dmqOEy-qHd129jwSaRwsg11PtbqKvNclpVuxC9kZzd1CVMilBtCJngcqLroBN_wT_zR" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div
+                            class="bg-white dark:bg-slate-900 p-4 rounded-xl flex justify-between items-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="font-bold text-sm text-slate-900 dark:text-white">SUV Ceramic Coating</span>
+                            <span class="material-icons text-xs text-slate-400">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-surface-dark" id="location">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
+                    Expert Car Detailing <br />
+                    <span class="font-serif-italic font-normal">At Any Hour</span>
+                </h2>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+                <div class="lg:col-span-2 relative h-96 lg:h-full rounded-2xl overflow-hidden">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26456.980998379233!2d-118.28131375390623!3d34.05364405364406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7b85dea2a93%3A0x1ff47c3ceb7bb2d5!2sLos%20Angeles%2C%20CA%2090017!5e0!3m2!1sen!2sus!4v1672535000000!5m2!1sen!2sus"
+                        class="w-full h-full border-0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="bg-primary rounded-2xl p-8 text-white flex flex-col justify-between h-full">
+                    <div>
+                        <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="material-icons text-white">calendar_today</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Schedule a Consultation</h3>
+                        <p class="text-blue-100 text-sm mb-8 leading-relaxed">
+                            Our team is available during the hours below and happy to accommodate custom appointments as
+                            needed.
+                        </p>
+                        <div class="space-y-3 text-sm border-t border-white/20 pt-6">
+                            <div class="flex justify-between">
+                                <span>Monday - Thursday</span>
+                                <span class="opacity-80">08:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Friday</span>
+                                <span class="opacity-80">09:00 - 17:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Saturday &amp; Sunday</span>
+                                <span class="opacity-80">09:30 - 19:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-8 w-full bg-white text-primary font-bold py-3 px-6 rounded-full flex items-center justify-between hover:bg-blue-50 transition-colors">
+                        Get Appointment
+                        <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center">
+                            <span class="material-icons text-[10px]">north_east</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark" id="faq">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-2">Friendly Asked</h2>
+                    <h2 class="text-4xl font-serif-italic text-slate-900 dark:text-white mb-8">Questions.</h2>
+                    <div
+                        class="bg-white dark:bg-surface-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-2">Still have a question?</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Our team is ready to assist you with
+                            anything you need.</p>
+                        <a class="inline-flex items-center px-6 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-blue-700 transition-colors"
+                            href="tel:+1234567890">
+                            Make a Call <span class="material-icons ml-2 text-sm">call</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <details
+                        class="group bg-white dark:bg-surface-dark rounded-xl p-6 cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-colors">
+                        <summary
+                            class="flex items-center justify-between text-slate-900 dark:text-white font-medium list-none">
+                            How quickly can we see results?
+                            <span
+                                class="ml-4 flex-shrink-0 bg-primary/10 text-primary rounded-full w-6 h-6 flex items-center justify-center">
+                                <span class="material-icons text-sm group-open:hidden">add</span>
+                                <span class="material-icons text-sm hidden group-open:block">remove</span>
+                            </span>
+                        </summary>
+                        <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-400 text-sm">
+                            Most details are completed within one day. However, extensive paint correction and ceramic
+                            coating packages may require 2-3 days to ensure proper curing and perfection.
+                        </p>
+                    </details>
+                    <details
+                        class="group bg-white dark:bg-surface-dark rounded-xl p-6 cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-colors"
+                        open="">
+                        <summary
+                            class="flex items-center justify-between text-slate-900 dark:text-white font-medium list-none">
+                            Is a credit card required for booking?
+                            <span
+                                class="ml-4 flex-shrink-0 bg-primary/10 text-primary rounded-full w-6 h-6 flex items-center justify-center">
+                                <span class="material-icons text-sm group-open:hidden">add</span>
+                                <span class="material-icons text-sm hidden group-open:block">remove</span>
+                            </span>
+                        </summary>
+                        <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-400 text-sm">
+                            No! After you choose your desired detailing package, site title, and subscription plan, we
+                            will personalize your services. Payment is typically handled upon completion of the service.
+                        </p>
+                    </details>
+                    <details
+                        class="group bg-white dark:bg-surface-dark rounded-xl p-6 cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-colors">
+                        <summary
+                            class="flex items-center justify-between text-slate-900 dark:text-white font-medium list-none">
+                            Do you work with vintage or exotic cars?
+                            <span
+                                class="ml-4 flex-shrink-0 bg-primary/10 text-primary rounded-full w-6 h-6 flex items-center justify-center">
+                                <span class="material-icons text-sm group-open:hidden">add</span>
+                                <span class="material-icons text-sm hidden group-open:block">remove</span>
+                            </span>
+                        </summary>
+                        <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-400 text-sm">
+                            Absolutely. We specialize in high-end, vintage, and exotic vehicles. Our team is trained to
+                            handle delicate paints and materials with the utmost care.
+                        </p>
+                    </details>
+                    <details
+                        class="group bg-white dark:bg-surface-dark rounded-xl p-6 cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-colors">
+                        <summary
+                            class="flex items-center justify-between text-slate-900 dark:text-white font-medium list-none">
+                            How do you measure success of a detailing job?
+                            <span
+                                class="ml-4 flex-shrink-0 bg-primary/10 text-primary rounded-full w-6 h-6 flex items-center justify-center">
+                                <span class="material-icons text-sm group-open:hidden">add</span>
+                                <span class="material-icons text-sm hidden group-open:block">remove</span>
+                            </span>
+                        </summary>
+                        <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-400 text-sm">
+                            Success is measured by your satisfaction and the measurable improvement in your vehicle's
+                            gloss levels, paint depth clarity, and interior hygiene.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-surface-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-primary rounded-3xl overflow-hidden relative">
+                <div class="absolute inset-0 bg-blue-600/20 z-0"></div>
+                <div class="grid lg:grid-cols-2">
+                    <div class="p-12 md:p-16 relative z-10 flex flex-col justify-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-2 leading-tight">Work With Experts To
+                        </h2>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">Bring Back That
+                            <span class="font-display italic font-normal">Shine</span>
+                        </h2>
+                        <a class="inline-flex items-center self-start bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors shadow-lg"
+                            href="#book">
+                            Get Started
+                            <span
+                                class="ml-2 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-icons text-[10px]">north_east</span>
+                            </span>
+                        </a>
+                        <ul class="mt-10 space-y-2">
+                            <li class="flex items-center gap-2 text-blue-100 text-sm">
+                                <span class="w-2 h-2 rounded-full bg-white"></span> Book a slot
+                            </li>
+                            <li class="flex items-center gap-2 text-blue-100 text-sm">
+                                <span class="w-2 h-2 rounded-full bg-white"></span> Receive Expert Detailing
+                            </li>
+                            <li class="flex items-center gap-2 text-blue-100 text-sm">
+                                <span class="w-2 h-2 rounded-full bg-white"></span> Protect Your Car By Our Coating
+                                Plans
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative h-64 lg:h-auto">
+                        <img alt="Team meeting" class="absolute inset-0 w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0C58OiHlPN3Mkfjh9Rh9CuFNPfZKfmRsIDlec5xDGIbaj-rzk76bVYNp5rhwjcc_Mxht1_yWOlmIBKPIsC6Ygr0tU6jhyLTImCXMPjW9Cve7AwBZRFAeKSK3BERjlIVLeRsWZHE8KSTEWXklLKYoIRFEQkiAsnY0OzKI6qr1VWQ_5VK5b2cXEB3ICQz6itK6E0zjHLvlhETaOfRm8vbKJofYcMMCquppelbxlepPmFDq_H0Q4IOelOUfov9vbUV150uBniiLP" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer
+        class="bg-background-light dark:bg-background-dark pt-20 pb-10 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 lg:col-span-1">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Newsletter</h3>
+                    <form class="flex gap-2">
+                        <div class="relative flex-grow">
+                            <input
+                                class="block w-full rounded-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white pl-4 pr-12 py-2 text-sm focus:border-primary focus:ring-primary shadow-sm"
+                                placeholder="Type your email address" type="email" />
+                            <button
+                                class="absolute right-1 top-1 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+                                type="submit">
+                                <span class="material-icons text-xs">arrow_forward</span>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-xs text-slate-500 mt-3">Let's transform your vision into results.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Sections</h3>
+                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="#gallery">Transformation Gallery</a>
+                        </li>
+                        <li><a class="hover:text-primary transition-colors" href="#reviews">Reviews</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#our-promise">Our Promise</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#services">Our Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">Services</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div
+                class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex flex-col gap-1">
+                    <span class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">OPTIMO<span
+                            class="text-primary">.</span></span>
+                </div>
+                <div class="flex gap-8 text-xs text-slate-500 dark:text-slate-400">
+                    <div>
+                        <span class="block text-slate-900 dark:text-white font-semibold mb-1">Email</span>
+                        <a class="hover:text-primary" href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a>
+                    </div>
+                    <div>
+                        <span class="block text-slate-900 dark:text-white font-semibold mb-1">Visit Us</span>
+                        <p>Los Angeles, CA 90017 United States</p>
+                    </div>
+                    <div>
+                        <span class="block text-slate-900 dark:text-white font-semibold mb-1">Call Us Now</span>
+                        <a class="hover:text-primary" href="tel:+1234567890">+1 234 567 890</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="bg-primary mt-8 rounded-lg p-4 flex flex-col md:flex-row justify-between items-center text-white text-xs">
+                <div class="flex gap-4 mb-4 md:mb-0">
+                    <a class="hover:text-blue-200" href="#">Facebook</a>
+                    <a class="hover:text-blue-200" href="#">Instagram</a>
+                </div>
+                <div class="flex gap-4">
+                    <span>© 2026 Optimo. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    </script>
+
+</body>
+
+</html>
