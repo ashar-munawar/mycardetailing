@@ -146,6 +146,36 @@
         .joined-btn-right {
             @apply px-4 h-full flex items-center justify-center bg-primary text-white text-[10px] font-bold uppercase tracking-tight hover:bg-blue-700 transition-colors;
         }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active, .reveal-left.active, .reveal-right.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        
+        /* Stagger delays for multiple items */
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
     </style>
 </head>
 
@@ -285,7 +315,7 @@
     <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-start">
-                <div>
+                <div class="reveal">
                     <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
                         Since 2018, we've been the choice for <span
                             class="font-serif-italic font-normal">impeccable</span> detailing, obsessed with every inch.
@@ -299,10 +329,10 @@
                 <div class="relative lg:mt-24">
                     <div class="grid grid-cols-2 gap-4">
                         <img alt="Detailer polishing car"
-                            class="rounded-2xl w-full h-64 object-cover shadow-lg translate-y-8 hover:scale-[1.02] transition-transform duration-500"
+                            class="reveal-right rounded-2xl w-full h-64 object-cover shadow-lg translate-y-8 hover:scale-[1.02] transition-transform duration-500"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKYFVZ5CmQV00RVSZvTo-GswkGee63rMjMT61n2sGYdD8CAfrr9cyWjTv3SHJgnqjktaaLdSUWu_ILz-b4Ycy1GgU-hhXHpgXE8XuBCOu3KXsNR66yRkWUbozysZfCvx9t2R_i0832rZBcytQEgJyY8EEScBCEyYAjAoblLIQGj_ixdV1EXOyrJ3I1cNW4KChO9HmDYo3nHhYmO3tpPv_QVkukgiIQguwltGJB0asEz5cA8lL1GtQJmuFV8nJ6qsy6VJqfZVrN" />
                         <img alt="Clean car interior"
-                            class="rounded-2xl w-full h-64 object-cover shadow-lg hover:scale-[1.02] transition-transform duration-500"
+                            class="reveal-right reveal-delay-2 rounded-2xl w-full h-64 object-cover shadow-lg hover:scale-[1.02] transition-transform duration-500"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKHyVg9jU0PKHWmhNpiVJt_Bm13mRB2v5XymDY4QP0Q7fY3Hs67sfguFWd4RYlYHuPU6tygBsQLZXFnxt8WEYVoAKJUa43RPjGj3XHYUcNhAhFts-9YZDqs-VTGVyXAsc_MuAGsPikIua9dpxRsz33qokpZGvDbDRqv6RlylEsE692GTI_6b3PXp9h8pVq93MQx3rFoATcdODdPWTv6zU-5CvT7fNJvU5_ocpl_I8fmoVtkbCYonin77hJOhT9MUA4A_B_yZJ2" />
                     </div>
                     <div
@@ -328,7 +358,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full flex justify-center mt-32 mb-12">
+            <div class="w-full flex justify-center mt-32 mb-12 reveal">
                 <div
                     class="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 w-full max-w-[1200px] hover:border-primary/30 transition-all group z-20 flex flex-col items-center text-center">
                     <div class="flex items-center justify-center gap-2 mb-8">
@@ -413,22 +443,22 @@
             </h2>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="p-6 text-center">
+            <div class="p-6 text-center reveal">
                 <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">500+</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">Cars detailed to perfection over the last 5
                     years.</p>
             </div>
-            <div class="p-6 text-center">
+            <div class="p-6 text-center reveal reveal-delay-1">
                 <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">99%</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">Client satisfaction rate based on post-service
                     surveys.</p>
             </div>
-            <div class="p-6 text-center">
+            <div class="p-6 text-center reveal reveal-delay-2">
                 <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">10+</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">Certified detailing specialists on our expert
                     team.</p>
             </div>
-            <div class="p-6 text-center">
+            <div class="p-6 text-center reveal reveal-delay-3">
                 <h3 class="hero-shimmer-text text-6xl md:text-7xl font-extrabold mb-4">5yr</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">Warranty on our premium ceramic coating
                     packages.</p>
@@ -436,7 +466,7 @@
         </div>
     </section>
     <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden" id="reviews">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 reveal">
             <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
                 Proven What Our <br />
                 Clients <span class="font-serif-italic font-normal">Say</span>
@@ -916,7 +946,7 @@
                 </div>
             </div>
         </div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 text-center reveal">
             <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                 We Give Your Car <span class="hero-shimmer-text">The Shine</span> It Always <span
                     class="font-serif-italic font-normal">Deserved</span>
@@ -941,7 +971,7 @@
     </section>
     <section class="py-24 bg-background-light dark:bg-background-dark" id="services">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
                 <div class="max-w-2xl">
                     <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4">
                         Preserving Value Through <br />
@@ -953,7 +983,8 @@
             </div>
             <div class="grid lg:grid-cols-2 gap-12 items-start">
                 <div class="space-y-4">
-                    <div class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800">
+                    <div
+                        class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800 reveal">
                         <div class="flex items-center gap-6 mb-4">
                             <span class="text-lg md:text-xl font-mono font-bold text-primary">[01]</span>
                             <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Paint Correction
@@ -975,7 +1006,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800">
+                    <div
+                        class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800 reveal">
                         <div class="flex items-center gap-6 mb-4">
                             <span class="text-lg md:text-xl font-mono font-bold text-primary">[02]</span>
                             <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Ceramic Coating
@@ -997,7 +1029,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800">
+                    <div
+                        class="service-item p-6 -ml-4 rounded-2xl border-b border-slate-200 dark:border-slate-800 reveal">
                         <div class="flex items-center gap-6 mb-4">
                             <span class="text-lg md:text-xl font-mono font-bold text-primary">[03]</span>
                             <h3 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Interior
@@ -1083,7 +1116,7 @@
                     </h2>
                 </div>
             </div>
-            <div class="mt-20 text-center mb-16">
+            <div class="mt-20 text-center mb-16 reveal">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 hero-shimmer-text">Want Results Like These?</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-lg mb-10">
                     Get a fast quote in under 24 hours or visit us directly.
@@ -1104,7 +1137,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal">
                     <img alt="Porsche 911 Detail"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuD80O9jaUaxECLC-7JqCb_MsYFMyHsSJqcY-0jI-Ppuxt7993GEaFBmzO_t6cLuQPGESj1E8uAr4w0PjEOpv1Y7mkEeWVx73bfFklge7XtYill0ubZcmXifNeHQem51D9H_sJGA4TONRjdGixyLdwDA38EU6Q9aeTIYEILSHCkVxWO_bLlcS-CqxH3Qy0RYMwZEmDzCgfgcdKVPt7XJ0Fu2wBmNyGvijez41nJmLvQ4Ql_Z32tn66Vro5wqWh564JLOLVv6VF4b" />
@@ -1117,7 +1150,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer lg:col-span-2">
+                <div
+                    class="group relative overflow-hidden rounded-2xl cursor-pointer lg:col-span-2 reveal reveal-delay-1">
                     <img alt="Luxury Interior Detail"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXbPonie0I_iYqSd113LKCu3GXAlJBGj7o-TVM5aI1sIbMI6Eudu1A7oAYBjWZq1DfsgVkd98qsA3ZOd5VzqN6aFratIKKQYCYLYVUOCb5CC8rWtdZT48D-PFS6BPjKi9f-SWNYvgJT8333KDSd0AW98lDF2gnbwPPx-kgtz2JwOv13UVxgEy7KcqATxkohj5MEw1eFSlfS8DukloG21yALYZbxGa9qzW6IFAiupuUFBjJeJiqAGCnLbnpRehrZ-XqaHPrhEX5" />
@@ -1130,7 +1164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal">
                     <img alt="SUV Ceramic Coating"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBheQl9fmh3zwvC38OjQ0zFGq56mkFSH6QOHgQ_931gKa415RrSch49gDH7z1Hfywu1SX8JUeVQyGFonItnEYzXBDxoTZ_V6xZ6CgSEM6nJZN0Pts9tBvxsIPU2WlmMphfC0Nej3njdt02UpLX_wBL_32oEyYGtqIqwS-MXBfsGm4lRd2sL6M56Wdhh4NHL3-VHU_yQ-dmqOEy-qHd129jwSaRwsg11PtbqKvNclpVuxC9kZzd1CVMilBtCJngcqLroBN_wT_zR" />
@@ -1143,7 +1177,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal reveal-delay-1">
                     <img alt="Sedan Polish"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfYRSAvo90U4B9wTXstZFXZTyKkX_KpYNYj-ODlX7U03rV8Z3aDFILzYqa9UZPxiPs_HSeqCABLGe_rLm_HOs9F-hNurSzJuqRkYvW048R3G--izHDXMIuWoKvEjP2ts-fJwyjgZ9Mr3WmrjK5_DIrhDeKLR4PM5N7cIWewfIyRyx64OL5P8oAPiYfYL5avRbYq0Ezu3EnPNZe5XAQ_cf_U-S1AwE69IrpLYcIKuQ5LJlIEE5jfs-UaKOjr0ehEIwyvPDiHT0_" />
@@ -1156,7 +1190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal reveal-delay-2">
                     <img alt="Engine Bay Detail"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWMaOTZEa74L7mSWpDEpSs2D3WTzeLYCeqZ5NJ6M_AtGN-K3GISzjCsoAPToBTH5t1C5I2N5M_n9Vv9S11b3X6j_4Ccf_fK9CGA2DDjx-lL-VKp2dznDihhXkq0NPYHRh-gtOB5LIj7XyjDZDbttJ-tZYWJG5v7s-qs_zm6ir3aapLCHWVexeRWMCm6FRGH5wOWAfK4GH_p9mWeRnfk2KToPE_aB3uE4EphjW-_Lw6AfON-B8xmgtOmJuJp33M3VJv6Cj3JjkV" />
@@ -1176,7 +1210,7 @@
     <section class="py-24 bg-background-light dark:bg-background-dark" id="our-promise">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="relative order-2 lg:order-1">
+                <div class="relative order-2 lg:order-1 reveal-left">
                     <img alt="Detailed engine bay"
                         class="rounded-2xl shadow-2xl w-full object-cover h-[600px] hover:scale-[1.01] transition-transform duration-500"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWMaOTZEa74L7mSWpDEpSs2D3WTzeLYCeqZ5NJ6M_AtGN-K3GISzjCsoAPToBTH5t1C5I2N5M_n9Vv9S11b3X6j_4Ccf_fK9CGA2DDjx-lL-VKp2dznDihhXkq0NPYHRh-gtOB5LIj7XyjDZDbttJ-tZYWJG5v7s-qs_zm6ir3aapLCHWVexeRWMCm6FRGH5wOWAfK4GH_p9mWeRnfk2KToPE_aB3uE4EphjW-_Lw6AfON-B8xmgtOmJuJp33M3VJv6Cj3JjkV" />
@@ -1217,7 +1251,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="order-1 lg:order-2">
+                <div class="order-1 lg:order-2 reveal-right">
                     <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                         The Value Behind Our <span class="font-serif-italic font-normal">Passion</span>
                     </h2>
@@ -1280,7 +1314,7 @@
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div
-                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px]">
+                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px] reveal">
                     <h3 class="text-3xl md:text-4xl font-bold hero-shimmer-text mb-6">Choose Service</h3>
                     <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                         Select from our wide range of premium detailing packages tailored to meet your specific needs
@@ -1288,7 +1322,7 @@
                     </p>
                 </div>
                 <div
-                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group mt-0 md:mt-12 hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px]">
+                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group mt-0 md:mt-12 hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px] reveal reveal-delay-1">
                     <h3 class="text-3xl md:text-4xl font-bold hero-shimmer-text mb-6">We Inspect</h3>
                     <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                         Our experts perform a detailed check to ensure every inch of your vehicle is treated with
@@ -1296,7 +1330,7 @@
                     </p>
                 </div>
                 <div
-                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group mt-0 md:mt-24 hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px]">
+                    class="bg-background-light dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative group mt-0 md:mt-24 hover:border-blue-200 dark:hover:border-blue-900 transition-colors h-full flex flex-col justify-center min-h-[300px] reveal reveal-delay-2">
                     <h3 class="text-3xl md:text-4xl font-bold hero-shimmer-text mb-6">Drop Off</h3>
                     <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                         Simply drop off your vehicle at our center and let our professionals handle the transformation.
@@ -1306,7 +1340,7 @@
         </div>
     </section>
     <section class="py-24 bg-white dark:bg-surface-dark overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex justify-between items-end">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex justify-between items-end reveal">
             <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
                 How We Detailed Cars <br />
                 To Look <span class="font-serif-italic font-normal">Better</span>
@@ -1314,7 +1348,7 @@
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="relative group h-[400px] overflow-hidden rounded-2xl">
+                <div class="relative group h-[400px] overflow-hidden rounded-2xl reveal">
                     <img alt="Sports Car"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuD80O9jaUaxECLC-7JqCb_MsYFMyHsSJqcY-0jI-Ppuxt7993GEaFBmzO_t6cLuQPGESj1E8uAr4w0PjEOpv1Y7mkEeWVx73bfFklge7XtYill0ubZcmXifNeHQem51D9H_sJGA4TONRjdGixyLdwDA38EU6Q9aeTIYEILSHCkVxWO_bLlcS-CqxH3Qy0RYMwZEmDzCgfgcdKVPt7XJ0Fu2wBmNyGvijez41nJmLvQ4Ql_Z32tn66Vro5wqWh564JLOLVv6VF4b" />
@@ -1329,7 +1363,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative group h-[400px] overflow-hidden rounded-2xl">
+                <div class="relative group h-[400px] overflow-hidden rounded-2xl reveal reveal-delay-1">
                     <img alt="Luxury Sedan"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfYRSAvo90U4B9wTXstZFXZTyKkX_KpYNYj-ODlX7U03rV8Z3aDFILzYqa9UZPxiPs_HSeqCABLGe_rLm_HOs9F-hNurSzJuqRkYvW048R3G--izHDXMIuWoKvEjP2ts-fJwyjgZ9Mr3WmrjK5_DIrhDeKLR4PM5N7cIWewfIyRyx64OL5P8oAPiYfYL5avRbYq0Ezu3EnPNZe5XAQ_cf_U-S1AwE69IrpLYcIKuQ5LJlIEE5jfs-UaKOjr0ehEIwyvPDiHT0_" />
@@ -1344,7 +1378,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative group h-[400px] overflow-hidden rounded-2xl">
+                <div class="relative group h-[400px] overflow-hidden rounded-2xl reveal reveal-delay-2">
                     <img alt="SUV"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBheQl9fmh3zwvC38OjQ0zFGq56mkFSH6QOHgQ_931gKa415RrSch49gDH7z1Hfywu1SX8JUeVQyGFonItnEYzXBDxoTZ_V6xZ6CgSEM6nJZN0Pts9tBvxsIPU2WlmMphfC0Nej3njdt02UpLX_wBL_32oEyYGtqIqwS-MXBfsGm4lRd2sL6M56Wdhh4NHL3-VHU_yQ-dmqOEy-qHd129jwSaRwsg11PtbqKvNclpVuxC9kZzd1CVMilBtCJngcqLroBN_wT_zR" />
@@ -1364,20 +1398,20 @@
     </section>
     <section class="py-24 bg-white dark:bg-surface-dark" id="location">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-4xl font-bold text-slate-900 dark:text-white">
                     Expert Car Detailing <br />
                     <span class="font-serif-italic font-normal">At Any Hour</span>
                 </h2>
             </div>
             <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-                <div class="lg:col-span-2 relative h-96 lg:h-full rounded-2xl overflow-hidden">
+                <div class="lg:col-span-2 relative h-96 lg:h-full rounded-2xl overflow-hidden reveal-left">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26456.980998379233!2d-118.28131375390623!3d34.05364405364406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7b85dea2a93%3A0x1ff47c3ceb7bb2d5!2sLos%20Angeles%2C%20CA%2090017!5e0!3m2!1sen!2sus!4v1672535000000!5m2!1sen!2sus"
                         class="w-full h-full border-0" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="bg-primary rounded-2xl p-8 text-white flex flex-col justify-between h-full">
+                <div class="bg-primary rounded-2xl p-8 text-white flex flex-col justify-between h-full reveal-right">
                     <div>
                         <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-6">
                             <span class="material-icons text-white">calendar_today</span>
@@ -1416,7 +1450,7 @@
     <section class="py-24 bg-background-light dark:bg-background-dark" id="faq">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16">
-                <div>
+                <div class="reveal-left">
                     <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-2">Friendly Asked</h2>
                     <h2 class="text-4xl font-serif-italic text-slate-900 dark:text-white mb-8">Questions.</h2>
                     <div
@@ -1430,7 +1464,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="space-y-4">
+                <div class="space-y-4 reveal-right">
                     <details
                         class="group bg-white dark:bg-surface-dark rounded-xl p-6 cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-colors">
                         <summary
@@ -1502,10 +1536,10 @@
     </section>
     <section class="py-24 bg-white dark:bg-surface-dark overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-primary rounded-3xl overflow-hidden relative">
+            <div class="bg-primary rounded-3xl overflow-hidden relative reveal">
                 <div class="absolute inset-0 bg-blue-600/20 z-0"></div>
                 <div class="grid lg:grid-cols-2">
-                    <div class="p-12 md:p-16 relative z-10 flex flex-col justify-center">
+                    <div class="p-12 md:p-16 relative z-10 flex flex-col justify-center reveal-left">
                         <h2 class="text-4xl md:text-5xl font-bold text-white mb-2 leading-tight">Work With Experts To
                         </h2>
                         <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">Bring Back That
@@ -1532,7 +1566,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="relative h-64 lg:h-auto">
+                    <div class="relative h-64 lg:h-auto reveal-right">
                         <img alt="Team meeting" class="absolute inset-0 w-full h-full object-cover"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0C58OiHlPN3Mkfjh9Rh9CuFNPfZKfmRsIDlec5xDGIbaj-rzk76bVYNp5rhwjcc_Mxht1_yWOlmIBKPIsC6Ygr0tU6jhyLTImCXMPjW9Cve7AwBZRFAeKSK3BERjlIVLeRsWZHE8KSTEWXklLKYoIRFEQkiAsnY0OzKI6qr1VWQ_5VK5b2cXEB3ICQz6itK6E0zjHLvlhETaOfRm8vbKJofYcMMCquppelbxlepPmFDq_H0Q4IOelOUfov9vbUV150uBniiLP" />
                     </div>
@@ -1642,6 +1676,32 @@
                 menuIcon.textContent = 'menu';
                 document.body.style.overflow = '';
             }
+        });
+
+        // Scroll Reveal Animation Initialization
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal:not(.active), .reveal-left:not(.active), .reveal-right:not(.active)').forEach(el => {
+                observer.observe(el);
+            });
+        }, { once: true });
+
+        // Initial check for elements already in view
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            observer.observe(el);
         });
     </script>
 
